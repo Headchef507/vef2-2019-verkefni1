@@ -7,14 +7,23 @@ const app = express();
 
 const router = express.Router();
 
+
+
 const readdirAsync = util.promisify(fs.readdir);
+
+const filePath = './lectures.json';
 
 function catchErrors(fn) {
   return (req, res, next) => fn(req, res, next).catch(next);
 }
 
-async function readLecturesList() {
-  const files = await readdirAsync('/public');
+async function readLecturesList(filePath) {
+  const skra = await readFile(filePath);
+  const json = JSON.parse(skra);
+  console.log(skra);
+  console.log(json);
+  console.log("lesaskrá");
+  return json;
 }
 
 async function list(req, res) {
@@ -34,7 +43,7 @@ async function lecture(req, res, next) {
   const foundLecture = articles.find(a => a.slug ===slug);
 
   if(!foundLecture){
-    return next
+    return './views/error.ejs';
   }
 
   const { title } = foundLecture;
