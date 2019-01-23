@@ -3,6 +3,7 @@ const path = require('path');
 const util = require('util');
 const express = require('express');
 
+
 const app = express();
 
 const router = express.Router();
@@ -11,14 +12,13 @@ const router = express.Router();
 
 const readdirAsync = util.promisify(fs.readdir);
 
-const filePath = './lectures.json';
 
 function catchErrors(fn) {
   return (req, res, next) => fn(req, res, next).catch(next);
 }
 
-async function readLecturesList(filePath) {
-  const skra = await readFile(filePath);
+async function readLecturesList() {
+  const skra = await readdirAsync('./lectures.json');
   const json = JSON.parse(skra);
   console.log(skra);
   console.log(json);
@@ -28,10 +28,11 @@ async function readLecturesList(filePath) {
 
 async function list(req, res) {
   const title = 'Fyrirlestrar';
-  const classes = await readLecturesList();
+  const data = await readLecturesList();
 
-  const {lectures} = data;
+  const { lectures } = data;
   res.render('index', {title, lectures});
+  console.log('liminn heim');
   console.log(lectures);
   
 }
