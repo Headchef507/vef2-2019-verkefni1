@@ -7,10 +7,14 @@ const port = 3000;
 
 //const path = require('path');
 
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/img', express.static(path.join(__dirname, 'articles/img')));
 
-app.use((req, res) => {
+
+/*app.use((req, res) => {
     res.send('Hello World!');
-  });
+  });*/
+
   app.listen(port, host, () => {
     console.log(`Server @ http://${host}:${port}/`);
   });
