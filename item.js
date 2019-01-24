@@ -1,5 +1,3 @@
-item.js
-
 const jsdom = require('jsdom');
 
 const { JSDOM } = jsdom;
@@ -148,4 +146,4 @@ module.exports = {
 
     return wrapper.outerHTML;
   },
-};
+}; // eslint-disable-line
