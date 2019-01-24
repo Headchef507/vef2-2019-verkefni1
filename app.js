@@ -32,6 +32,10 @@ const port = 3000;
 
 app.use('/', lectures);
 
+app.use(errorHandler);
+
+app.use(notFound);
+
 
 
 /*app.use((req, res) => {
