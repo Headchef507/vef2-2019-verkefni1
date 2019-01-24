@@ -2,6 +2,7 @@ const path = require('path');
 const util = require('util');
 const fs = require('fs');
 const express = require('express');
+const item = require('./item');
 
 
 const app = express();
@@ -45,7 +46,9 @@ async function lecture(req, res, next) {
 
   const { title } = foundLecture;
 
-  return res.render('lecture', { title, lecture: foundLecture });
+  const lect = item.createContent(foundLecture.content);
+
+  return res.render('lecture', { title, lecture: foundLecture, lect });
 }
 
 

@@ -1,19 +1,6 @@
 <%- include header -%>
-<ul class="lectures">
-    <% lectures.forEach((lecture) => { %>
-        <li class="lectures__lecture">
-            <a href="<%=lecture.slug %>" class="lecutre__link">
-                <div class="lectures__image  <%= !lecture.image ? 'lectures__image--empty' : '' %>">
-                    <% if (lecture.image){ %>
-                        <img src="<%= lecture.image %>" alt="" class="lectures__img">
-                    <% } %>
-                </div>
-                <h2 class="lectures__title"><%= lectures.title %>
-                </h2>
-                <p class="lectures__data"><%= locals.parseData(lectures.data) %>
-                </p>
-            </a>
-        </li>
-    <% }) %>
-</ul>
+
+
+<%- lect -%>
+
 <%- include footer -%>
